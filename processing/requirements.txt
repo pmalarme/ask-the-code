@@ -1,0 +1,10 @@
+openai
+num2words
+matplotlib
+plotly
+scipy
+scikit-learn
+pandas
+tiktoken
+redis
+langchain
