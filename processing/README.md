@@ -19,5 +19,6 @@ cd venv/Scripts
 ## Install the dependencies
 
 ```bash
+cd ../..
 pip install -r requirements.txt
 ```
