@@ -10,7 +10,6 @@ The source code is processed by the following steps:
 ## Setup the virtual environment
 
 ```bash
-cd processing
 python -m venv ./venv
 cd venv/Scripts
 ./activate
@@ -20,5 +19,5 @@ cd venv/Scripts
 
 ```bash
 cd ../..
-pip install -r requirements.txt
+pip install -r processing/requirements.txt
 ```
