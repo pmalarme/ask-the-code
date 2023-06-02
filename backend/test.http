@@ -1,0 +1,7 @@
+POST http://127.0.0.1:5000/ask
+Content-Type: application/json
+
+{
+  "question": "What is the purpose of the project?",
+  "chat_history": []
+}

@@ -1,0 +1,14 @@
+# Requirements for Ask-The-Code backend
+
+openai
+num2words
+matplotlib
+plotly
+scipy
+scikit-learn
+pandas
+tiktoken
+redis
+langchain
+Flask
+flask-cors
