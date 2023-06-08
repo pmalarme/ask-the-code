@@ -23,8 +23,6 @@ os.environ['OPENAI_API_BASE'] = openai.api_base
 os.environ['OPENAI_API_KEY'] = openai.api_key
 os.environ['OPENAI_API_VERSION'] = openai.api_version
 
-embeddings = OpenAIEmbeddings(model='text-embedding-ada-002', chunk_size=1)
-
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -48,9 +46,14 @@ retriever_k = 20
 # Set the name of the GPT model to be used for the chatbot
 gpt_model_name = ''
 
+# Set the name of the embeddings model to be used for the retriever
+embeddings_model_name = 'text-embedding-ada-002'
+
 # ---------------------------------------------------------------------------- #
 #                              API implementation                              #
 # ---------------------------------------------------------------------------- #
+
+embeddings = OpenAIEmbeddings(model=embeddings_model_name, chunk_size=1)
 
 @app.route('/ask', methods=['POST'])
 @cross_origin()
@@ -67,12 +70,16 @@ def ask():
     retriever = redis.as_retriever()
     retriever.k = retriever_k
 
-    chat_model = AzureChatOpenAI(deployment_name=gpt_model_name, temperature=0.0, top_p=1.0)
+    chat_model = AzureChatOpenAI(deployment_name=gpt_model_name, temperature=0.0, model_kwargs={ 'top_p': 1.0 })
     qa = ConversationalRetrievalChain.from_llm(chat_model, retriever=retriever, return_source_documents=True)
 
     # Ask the question
     question = data['question']
-    chat_history = data['chat_history']
+    _chat_history = data['chat_history']
+    chat_history = []
+    # chat history needs to be a list of tuples
+    for chat in _chat_history:
+      chat_history.append((chat[0], chat[1]))
     qa_response = qa({'question': question, 'chat_history': chat_history})
 
     # Create the response

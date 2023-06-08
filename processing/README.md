@@ -10,8 +10,8 @@ The source code is processed by the following steps:
 ## Setup the virtual environment
 
 ```bash
-python -m venv ./venv
-cd venv/Scripts
+python -m venv ./.venv
+cd ./.venv/Scripts
 ./activate
 ```
 
