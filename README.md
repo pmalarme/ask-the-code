@@ -1,6 +1,6 @@
 # Ask The Code
 
-Ask the code is a demo project to use OpenAI to talk with your source code.
+Ask the code is a demo project to use Azure OpenAI to talk with your source code.
 
 This project is inspired by [Azure OpenAI Embeddings QnA](https://github.com/ruoccofabrizio/azure-open-ai-embeddings-qna). It creates embeddings vectors from the source code files. Then it uses the Azure OpenAI GPT model to answer questions about the source code.
 
